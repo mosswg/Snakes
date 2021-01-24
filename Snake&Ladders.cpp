@@ -1,3 +1,8 @@
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #include <iostream>
 #include <ctime>
 #include <string>
@@ -6,74 +11,60 @@
 #include <fstream>
 
 int ladder(int position) {
-if (position == 4) {
-    position = 16;
-}
-if (position == 12) {
-    position = 33;
-}
-if (position == 18) {
-    position = 22;
-}
-if (position == 26) {
-    position = 37;
-}
-if (position == 42) {
-    position = 61;
-}
-if (position == 49) {
-    position = 51;
-}
-if (position == 55) {
-    position = 74;
-}
-if (position == 82) {
-    position = 98;
-}
-if (position == 85) {
-    position = 95;
-}
-if (position == 88) {
-    position = 92;
-}
-return position;
+// I am repulsed by how I coded these methods before
+// Changed from multiple if statement to single switch statement
+    switch (position) {
+        case 4:
+            return 16;
+        case 12:
+            return 33;
+        case 18:
+            return 22;
+        case 26:
+            return 37;
+        case 42:
+            return 61;
+        case 49:
+            return 51;
+        case 55:
+            return 74;
+        case 82:
+            return 98;
+        case 85:
+            return 95;
+        case 88:
+            return 92;
+        default:
+            return position;
+    }
 }
 int snake(int position) {
-
-if (position == 21) {
-    position = 3;
+    switch(position) {
+        case 21:
+            return 3;
+        case 35:
+            return 9;
+        case 24:
+            return 7;
+        case 50:
+            return 11;
+        case 53:
+            return 15;
+        case 60:
+            return 23;
+        case 75:
+            return 44;
+        case 89:
+            return 48;
+        case 93:
+            return 25;
+        case 97:
+            return 65;
+        case 99:
+            return 58;
+        default:
+            return position;
 }
-if (position == 35) {
-    position = 9;
-}
-if (position == 24) {
-    position = 7;
-}
-if (position == 50) {
-    position = 11;
-}
-if (position == 53) {
-    position = 15;
-}
-if (position == 60) {
-    position = 23;
-}
-if (position == 75) {
-    position = 44;
-}
-if (position == 89) {
-    position = 48;
-}
-if (position == 93) {
-    position = 25;
-}
-if (position == 97) {
-    position = 65;
-}
-if (position == 99) {
-    position = 58;
-}
-return position;
 }
 
 int main() {
@@ -97,18 +88,17 @@ int main() {
     int dice2 = 0;
     int position = 0;
     int position2 = 0;
-    while (men != 49 or men != 50 or men != 51) {
-        std::cout << "1. Easy \n 2. Hard \n 3. Explain \n";
-        key_press=getch();
-        men=key_press;
+    while (men != 49 || men != 50 || men != 51) {
+        std::cout << "1. Easy \n2. Hard \n3. Explain \n";
+        men=getch();
 
         if (men == 27) {
             exit(0);
         }
         if (men == 51) {
-            std::cout << "In 'Easy' any number over 100 will win \n In 'Hard' only exactly 100 will win \n";
+            std::cout << "In 'Easy' any number over 100 will win \nIn 'Hard' only exactly 100 will win \n";
 }
-        else if (men == 49 or men == 50) {
+        else if (men == 49 || men == 50) {
                 if (men == 50) {men = 2;}
             break;
         }
@@ -116,29 +106,29 @@ int main() {
             std::cout << "Please enter 1, 2 or 3\n";
         }
     }
-    while (men2 != 49 or men2 != 50) {
-        std::cout << "1. Instant \n 2. Slow Display \n";
+    while (men2 != 49 || men2 != 50) {
+        std::cout << "1. Instant \n2. Slow Display \n";
         key_press=getch();
         men2=key_press;
 
         if (men2 == 27) {
             exit(0);
         }
-        if (men2 == 49 or men2 == 50) {
+        if (men2 == 49 || men2 == 50) {
             break;
         }
         else {
             std::cout << "Please enter 1, 2\n";
         }
     }
-    while (men3 != 49 or men3 != 50) {
-            std::cout << "1. 1 Player \n 2. 2 Player \n";
+    while (men3 != 49 || men3 != 50) {
+            std::cout << "1. 1 Player \n2. 2 Player \n";
     key_press=getch();
     men3=key_press;
         if (men3 == 27) {
             exit(0);
         }
-        if (men3 != 49 or men3 != 50) {
+        if (men3 != 49 || men3 != 50) {
             break;
         }
     }
@@ -185,7 +175,7 @@ else {
   std::cout << position2 << "\n";
   }
   if (men2 == 50) {
-        _sleep(150);
+        Sleep(150);
   }
   if (position2 >= 100) {
     break;
@@ -224,12 +214,12 @@ while (position < 100) {
   std::cout << position << "\n";
   }
   if (men2 == 50) {
-        _sleep(150);
+        Sleep(150);
   }
-  if (men == 1 and position > 100) {
+  if (men == 1 && position > 100) {
     break;
   }
-if (men == 2 and position == 100) {
+if (men == 2 && position == 100) {
     break;
 }
 }
